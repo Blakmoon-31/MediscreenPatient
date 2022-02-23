@@ -1,11 +1,12 @@
 package com.openclassrooms.mediscreenPatient.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.openclassrooms.mediscreenPatient.dto.PatientDto;
+import com.openclassrooms.mediscreenPatient.mapper.PatientMapper;
 import com.openclassrooms.mediscreenPatient.model.Patient;
 import com.openclassrooms.mediscreenPatient.repository.PatientRepository;
 
@@ -15,34 +16,49 @@ public class PatientService {
 	@Autowired
 	private PatientRepository patientRepository;
 
-	public void addPatient(Patient patient) {
+	@Autowired
+	private PatientMapper patientMapper;
 
-		patientRepository.save(patient);
+	public void addPatient(PatientDto patientDto) {
 
-	}
-
-	public Optional<Patient> getPatientById(int patientId) {
-
-		return patientRepository.findById(patientId);
+		Patient patientToAdd = patientMapper.mapPatientDtoToPatient(patientDto);
+		patientRepository.save(patientToAdd);
 
 	}
 
-	public List<Patient> getPatients() {
+	public PatientDto getPatientById(int patientId) {
 
-		return patientRepository.findAll();
+		Patient patient = patientRepository.findById(patientId).get();
+		PatientDto patientDto = patientMapper.mapPatientToPatientDto(patient);
+
+		return patientDto;
+
 	}
 
-	public Patient getPatientByFamilyAndGivenName(String familyName, String givenName) {
+	public List<PatientDto> getPatients() {
 
-		return patientRepository.findByFamilyNameAndGivenName(familyName, givenName);
+		List<Patient> patients = patientRepository.findAll();
+		List<PatientDto> patientDtos = patientMapper.mapPatientsToPatientDtos(patients);
+
+		return patientDtos;
 	}
 
-	public Patient updatePatient(Patient patient) {
+	public PatientDto getPatientByFamilyAndGivenName(String familyName, String givenName) {
 
-		patientRepository.save(patient);
-		Patient patientUpdated = patientRepository.findById(patient.getPatientId()).get();
+		Patient patient = patientRepository.findByFamilyNameAndGivenName(familyName, givenName);
+		PatientDto patientDto = patientMapper.mapPatientToPatientDto(patient);
 
-		return patientUpdated;
+		return patientDto;
+	}
+
+	public PatientDto updatePatient(PatientDto patientDto) {
+
+		Patient patientToUpdate = patientMapper.mapPatientDtoToPatient(patientDto);
+		patientRepository.save(patientToUpdate);
+		Patient patientUpdated = patientRepository.findById(patientToUpdate.getPatientId()).get();
+		PatientDto patientDtoUpdated = patientMapper.mapPatientToPatientDto(patientUpdated);
+
+		return patientDtoUpdated;
 	}
 
 	public void deletePatientById(int patientId) {

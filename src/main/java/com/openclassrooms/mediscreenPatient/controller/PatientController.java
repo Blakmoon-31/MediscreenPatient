@@ -1,7 +1,6 @@
 package com.openclassrooms.mediscreenPatient.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,9 +11,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openclassrooms.mediscreenPatient.model.Patient;
+import com.openclassrooms.mediscreenPatient.dto.PatientDto;
 import com.openclassrooms.mediscreenPatient.service.PatientService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("API pour les opérations CRUD sur les patients.")
 @RestController
 public class PatientController {
 
@@ -26,22 +29,24 @@ public class PatientController {
 	 * 
 	 * @return patients - A list of Patient objects
 	 */
+	@ApiOperation("Récupère la liste de tous les patients.")
 	@GetMapping("/patient/list")
-	public List<Patient> getPatients() {
+	public List<PatientDto> getPatients() {
 
-		List<Patient> patients = patientService.getPatients();
+		List<PatientDto> patientDtos = patientService.getPatients();
 
-		return patients;
+		return patientDtos;
 	}
 
 	/**
 	 * Get a patient by his id
 	 * 
 	 * @param patientId - The id of the patient
-	 * @return An optional Patient object
+	 * @return A Patient object
 	 */
+	@ApiOperation("Récupère un patient à partir de son ID.")
 	@GetMapping("/patient/get/{id}")
-	public Optional<Patient> getPatientById(@PathVariable("id") int patientId) {
+	public PatientDto getPatientById(@PathVariable("id") int patientId) {
 
 		return patientService.getPatientById(patientId);
 	}
@@ -53,9 +58,10 @@ public class PatientController {
 	 * @param givenName  - The given name of the patient
 	 * @return A Patient object
 	 */
-	@GetMapping("/patient/get/{family}/{given}")
-	public Patient getPatientByFamilyAndGivenName(@PathVariable("family") String familyName,
-			@PathVariable("given") String givenName) {
+	@ApiOperation("Récupère un patient à partir de son nom de famille (familyName) et de son prénom (givenName).")
+	@GetMapping("/patient/get/{familyName}/{givenName}")
+	public PatientDto getPatientByFamilyAndGivenName(@PathVariable("familyName") String familyName,
+			@PathVariable("givenName") String givenName) {
 
 		return patientService.getPatientByFamilyAndGivenName(familyName, givenName);
 	}
@@ -65,10 +71,11 @@ public class PatientController {
 	 * 
 	 * @param patient - The Patient object to add
 	 */
+	@ApiOperation("Ajoute un patient dans la base de données.")
 	@PostMapping("/patient/add")
-	public void addPatient(@RequestBody Patient patient) {
+	public void addPatient(@RequestBody PatientDto patientDto) {
 
-		patientService.addPatient(patient);
+		patientService.addPatient(patientDto);
 
 	}
 
@@ -78,8 +85,9 @@ public class PatientController {
 	 * @param patient - The Patient object to update
 	 * @return The Patient updated
 	 */
+	@ApiOperation("Met à jour un patient.")
 	@PutMapping("/patient/update")
-	public Patient updatePatient(@RequestBody Patient patient) {
+	public PatientDto updatePatient(@RequestBody PatientDto patient) {
 
 		return patientService.updatePatient(patient);
 	}
@@ -89,6 +97,7 @@ public class PatientController {
 	 * 
 	 * @param patientId - The id of the patient
 	 */
+	@ApiOperation("Supprime un patient de la base de données à partir de son ID.")
 	@DeleteMapping("/patient/delete/{id}")
 	public void deletePatient(@PathVariable("id") int patientId) {
 

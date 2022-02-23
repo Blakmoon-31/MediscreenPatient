@@ -2,9 +2,9 @@ package com.openclassrooms.mediscreenPatient.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.openclassrooms.mediscreenPatient.controller.PatientController;
-import com.openclassrooms.mediscreenPatient.model.Patient;
+import com.openclassrooms.mediscreenPatient.dto.PatientDto;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)
@@ -38,23 +38,23 @@ public class PatientControllerIT {
 		validatorFactory = Validation.buildDefaultValidatorFactory();
 		validator = validatorFactory.getValidator();
 
-		Patient patientToAdd1 = new Patient();
-		patientToAdd1.setFamilyName("TestAdd1");
-		patientToAdd1.setGivenName("Add1");
-		patientToAdd1.setSex("M");
-		patientToAdd1.setBirthdate(LocalDateTime.now());
-		patientToAdd1.setAddress("Adress 1");
-		patientToAdd1.setPhone("111-2222-333");
+		PatientDto patientDtoToAdd1 = new PatientDto();
+		patientDtoToAdd1.setFamilyName("TestAdd1");
+		patientDtoToAdd1.setGivenName("Add1");
+		patientDtoToAdd1.setSex("M");
+		patientDtoToAdd1.setBirthdate(LocalDate.now());
+		patientDtoToAdd1.setAddress("Adress 1");
+		patientDtoToAdd1.setPhone("111-2222-333");
 
-		patientController.addPatient(patientToAdd1);
+		patientController.addPatient(patientDtoToAdd1);
 
-		Patient patientToAdd2 = new Patient();
-		patientToAdd2.setFamilyName("TestAdd2");
-		patientToAdd2.setGivenName("Add2");
-		patientToAdd2.setSex("M");
-		patientToAdd2.setBirthdate(LocalDateTime.now());
+		PatientDto patientDtoToAdd2 = new PatientDto();
+		patientDtoToAdd2.setFamilyName("TestAdd2");
+		patientDtoToAdd2.setGivenName("Add2");
+		patientDtoToAdd2.setSex("M");
+		patientDtoToAdd2.setBirthdate(LocalDate.now());
 
-		patientController.addPatient(patientToAdd2);
+		patientController.addPatient(patientDtoToAdd2);
 
 	}
 
@@ -73,41 +73,41 @@ public class PatientControllerIT {
 	@Test
 	public void testGetPatients() {
 
-		List<Patient> patientsList = patientController.getPatients();
+		List<PatientDto> patientDtosList = patientController.getPatients();
 
-		assertThat(patientsList.size()).isGreaterThanOrEqualTo(4);
+		assertThat(patientDtosList.size()).isGreaterThanOrEqualTo(4);
 	}
 
 	@Test
 	public void testGetPatientById() {
 
-		Optional<Patient> patientFound = patientController.getPatientById(3);
+		PatientDto patientDtoFound = patientController.getPatientById(3);
 
-		assertThat(patientFound.get().getFamilyName()).isEqualTo("TestInDanger");
+		assertThat(patientDtoFound.getFamilyName()).isEqualTo("TestInDanger");
 
 	}
 
 	@Test
 	public void testGetPatientByFamilyAndGivenName() {
 
-		Patient patientFound = patientController.getPatientByFamilyAndGivenName("TestInDanger", "Test");
+		PatientDto patientDtoFound = patientController.getPatientByFamilyAndGivenName("TestInDanger", "Test");
 
-		assertThat(patientFound.getPatientId()).isEqualTo(3);
+		assertThat(patientDtoFound.getPatientId()).isEqualTo(3);
 
 	}
 
 	@Test
 	public void testAddPatient() {
 
-		Patient patientToAdd = new Patient();
-		patientToAdd.setFamilyName("TestAdd");
-		patientToAdd.setGivenName("Add");
-		patientToAdd.setSex("M");
-		patientToAdd.setBirthdate(LocalDateTime.now());
+		PatientDto patientDtoToAdd = new PatientDto();
+		patientDtoToAdd.setFamilyName("TestAdd");
+		patientDtoToAdd.setGivenName("Add");
+		patientDtoToAdd.setSex("M");
+		patientDtoToAdd.setBirthdate(LocalDate.now());
 
-		patientController.addPatient(patientToAdd);
+		patientController.addPatient(patientDtoToAdd);
 
-		Patient patientAdded = patientController.getPatientByFamilyAndGivenName("TestAdd", "Add");
+		PatientDto patientAdded = patientController.getPatientByFamilyAndGivenName("TestAdd", "Add");
 
 		assertThat(patientAdded.getSex()).isEqualTo("M");
 
@@ -116,16 +116,16 @@ public class PatientControllerIT {
 	@Test
 	public void testPatientValidation() {
 
-		Patient patientToAdd = new Patient();
-		patientToAdd.setFamilyName("TestAdd");
-		patientToAdd.setGivenName("Add");
-		patientToAdd.setBirthdate(LocalDateTime.now());
+		PatientDto patientDtoToAdd = new PatientDto();
+		patientDtoToAdd.setFamilyName("TestAdd");
+		patientDtoToAdd.setGivenName("Add");
+		patientDtoToAdd.setBirthdate(LocalDate.now());
 
-		Set<ConstraintViolation<Patient>> violations = validator.validate(patientToAdd);
+		Set<ConstraintViolation<PatientDto>> violations = validator.validate(patientDtoToAdd);
 
 		assertThat(violations.size()).isEqualTo(1);
 
-		ConstraintViolation<Patient> violation = violations.iterator().next();
+		ConstraintViolation<PatientDto> violation = violations.iterator().next();
 		assertThat(violation.getMessage()).isEqualTo("Sex is mandatory");
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("sex");
 
@@ -134,28 +134,28 @@ public class PatientControllerIT {
 	@Test
 	public void testUpdatePatient() {
 
-		Patient patientToUpdate = patientController.getPatientByFamilyAndGivenName("TestAdd1", "Add1");
+		PatientDto patientDtoToUpdate = patientController.getPatientByFamilyAndGivenName("TestAdd1", "Add1");
 
-		patientToUpdate.setSex("F");
+		patientDtoToUpdate.setSex("F");
 
-		patientController.updatePatient(patientToUpdate);
+		patientController.updatePatient(patientDtoToUpdate);
 
-		Patient patientUpdated = patientController.getPatientById(patientToUpdate.getPatientId()).get();
+		PatientDto patientDtoUpdated = patientController.getPatientById(patientDtoToUpdate.getPatientId());
 
-		assertThat(patientUpdated.getSex()).isEqualTo("F");
+		assertThat(patientDtoUpdated.getSex()).isEqualTo("F");
 
 	}
 
 	@Test
 	public void testDeletePatient() {
 
-		List<Patient> patientsBefore = patientController.getPatients();
+		List<PatientDto> patientsBefore = patientController.getPatients();
 
-		Patient patientToDelete = patientController.getPatientByFamilyAndGivenName("TestAdd2", "Add2");
+		PatientDto patientToDelete = patientController.getPatientByFamilyAndGivenName("TestAdd2", "Add2");
 
 		patientController.deletePatient(patientToDelete.getPatientId());
 
-		List<Patient> patientsAfter = patientController.getPatients();
+		Collection<PatientDto> patientsAfter = patientController.getPatients();
 
 		assertThat(patientsBefore.size()).isEqualTo(patientsAfter.size() + 1);
 	}
