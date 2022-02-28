@@ -14,6 +14,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * The model of the Patient entity in the database. Will be mapped into
+ * PatientDto objects for exchange with the web UI.
+ * 
+ * @author emmanuel
+ *
+ */
 @Getter
 @Setter
 @NoArgsConstructor

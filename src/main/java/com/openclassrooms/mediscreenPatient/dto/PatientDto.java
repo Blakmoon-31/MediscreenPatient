@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Data Transfert Object of Patient used for exchange with web UI
+ * Data Transfert Object of Patient used for exchange with the web UI.
  * 
  * @author emmanuel
  *

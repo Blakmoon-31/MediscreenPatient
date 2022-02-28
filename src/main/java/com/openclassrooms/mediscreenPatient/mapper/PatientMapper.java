@@ -8,14 +8,20 @@ import org.springframework.stereotype.Service;
 import com.openclassrooms.mediscreenPatient.dto.PatientDto;
 import com.openclassrooms.mediscreenPatient.model.Patient;
 
+/**
+ * The mapper between Patient and PatientDto objects.
+ * 
+ * @author emmanuel
+ *
+ */
 @Service
 public class PatientMapper {
 
 	/**
-	 * Map a Patient object into a PatientDto object
+	 * Maps a Patient object into a PatientDto object.
 	 * 
 	 * @param patient - The Patient object to map
-	 * @return patientDto - A PatientDto object
+	 * @return A PatientDto object
 	 */
 	public PatientDto mapPatientToPatientDto(Patient patient) {
 
@@ -32,10 +38,10 @@ public class PatientMapper {
 	}
 
 	/**
-	 * Map a PatientDto object into a Patient object
+	 * Maps a PatientDto object into a Patient object.
 	 * 
 	 * @param patientDto - The PatientDto object to map
-	 * @return patient - A Patient object
+	 * @return A Patient object
 	 */
 	public Patient mapPatientDtoToPatient(PatientDto patientDto) {
 
@@ -52,10 +58,10 @@ public class PatientMapper {
 	}
 
 	/**
-	 * Map a list of Patient objects into a list of PatientDto objects
+	 * Maps a list of Patient objects into a list of PatientDto objects.
 	 * 
 	 * @param patients - The list of Patient objects to map
-	 * @return patientDtos - A list of PatientDto objects
+	 * @return A list of PatientDto objects
 	 */
 	public List<PatientDto> mapPatientsToPatientDtos(List<Patient> patients) {
 
