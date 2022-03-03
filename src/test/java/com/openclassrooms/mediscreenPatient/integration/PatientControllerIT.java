@@ -34,7 +34,7 @@ public class PatientControllerIT {
 	private static Validator validator;
 
 	@BeforeAll
-	public void setData() {
+	public void setTestData() {
 		validatorFactory = Validation.buildDefaultValidatorFactory();
 		validator = validatorFactory.getValidator();
 
@@ -59,7 +59,7 @@ public class PatientControllerIT {
 	}
 
 	@AfterAll
-	public void resetData() {
+	public void resetTestData() {
 
 		validatorFactory.close();
 
