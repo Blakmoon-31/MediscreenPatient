@@ -73,7 +73,7 @@ public class PatientController {
 	}
 
 	/**
-	 * Adds a patient in the database.
+	 * Adds a patient.
 	 * 
 	 * @param patientDto - The patient to add
 	 */
@@ -86,7 +86,7 @@ public class PatientController {
 	}
 
 	/**
-	 * Updates a patient in the database and returns the patient updated.
+	 * Updates a patient and returns the patient updated.
 	 * 
 	 * @param patientDto - The patient to update
 	 * @return A PatientDto object

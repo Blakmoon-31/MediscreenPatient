@@ -70,7 +70,7 @@ public class PatientService {
 	}
 
 	/**
-	 * Maps a PatientDto object to a Patient object and adds it in the database.
+	 * Maps a PatientDto object to a Patient object and adds it into the database.
 	 * 
 	 * @param patientDto - The patient to add
 	 */
@@ -82,7 +82,7 @@ public class PatientService {
 	}
 
 	/**
-	 * Maps a PatientDto object into a Patient object, updates it in the database
+	 * Maps a PatientDto object into a Patient object, updates it into the database
 	 * and returns the updated patient as a PatientDto object.
 	 * 
 	 * @param patientDto - The patient to update
@@ -99,7 +99,7 @@ public class PatientService {
 	}
 
 	/**
-	 * Deletes a patient by his ID.
+	 * Deletes a patient in the database by his ID.
 	 * 
 	 * @param patientId - The ID of the patient to delete
 	 */
