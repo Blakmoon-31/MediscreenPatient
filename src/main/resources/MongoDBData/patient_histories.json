@@ -1,0 +1,29 @@
+{"patientId":1,"historyDate":"2022-01-15","practitionerNote":"Le patient déclare qu'il « se sent très bien »\r\nPoids égal ou inférieur au poids recommandé"}
+{"patientId":1,"historyDate":"2022-01-20","practitionerNote":"Le patient déclare qu'il se sent fatigué pendant la journée\r\nIl se plaint également de douleurs musculaires\r\nTests de laboratoire indiquant une microalbumine élevée"}
+{"patientId":1,"historyDate":"2022-02-12","practitionerNote":"Le patient déclare qu'il ne se sent pas si fatigué que ça\r\nFumeur, il a arrêté dans les 12 mois précédents\r\nTests de laboratoire indiquant que les anticorps sont élevés"}
+{"patientId":2,"historyDate":"2021-11-30","practitionerNote":"Le patient déclare qu'il ressent beaucoup de stress au travail\r\nIl se plaint également que son audition est anormale dernièrement"}
+{"patientId":2,"historyDate":"2022-01-15","practitionerNote":"Le patient déclare avoir fait une réaction aux médicaments au cours des 3 derniers mois\r\nIl remarque également que son audition continue d'être anormale"}
+{"patientId":2,"historyDate":"2022-01-20","practitionerNote":"Tests de laboratoire indiquant une microalbumine élevée"}
+{"patientId":2,"historyDate":"2022-02-12","practitionerNote":"Le patient déclare que tout semble aller bien\r\nLe laboratoire rapporte que l'hémoglobine A1C dépasse le niveau recommandé\r\nLe patient déclare qu’il fume depuis longtemps"}
+{"patientId":3,"historyDate":"2022-01-15","practitionerNote":"Le patient déclare qu'il fume depuis peu"}
+{"patientId":3,"historyDate":"2022-01-20","practitionerNote":"Tests de laboratoire indiquant une microalbumine élevée"}
+{"patientId":3,"historyDate":"2022-02-12","practitionerNote":"Le patient déclare qu'il est fumeur et qu'il a cessé de fumer l'année dernière\r\nIl se plaint également de crises d’apnée respiratoire anormales\r\nTests de laboratoire indiquant un taux de cholestérol LDL élevé"}
+{"patientId":3,"historyDate":"2022-03-02","practitionerNote":"Tests de laboratoire indiquant un taux de cholestérol LDL élevé"}
+{"patientId":4,"historyDate":"2021-11-30","practitionerNote":"Le patient déclare qu'il lui est devenu difficile de monter les escaliers\r\nIl se plaint également d’être essoufflé\r\nTests de laboratoire indiquant que les anticorps sont élevés\r\nRéaction aux médicaments"}
+{"patientId":4,"historyDate":"2022-01-17","practitionerNote":"Le patient déclare qu'il a mal au dos lorsqu'il reste assis pendant longtemps"}
+{"patientId":4,"historyDate":"2022-02-12","practitionerNote":"Le patient déclare avoir commencé à fumer depuis peu\r\nHémoglobine A1C supérieure au niveau recommandé"}
+{"patientId":5,"historyDate":"2021-12-14","practitionerNote":"Le patient déclare avoir des douleurs au cou occasionnellement\r\nLe patient remarque également que certains aliments ont un goût différent\r\nRéaction apparente aux médicaments\r\nPoids corporel supérieur au poids recommandé"}
+{"patientId":5,"historyDate":"2022-01-04","practitionerNote":"Le patient déclare avoir eu plusieurs épisodes de vertige depuis la dernière visite.\r\nTaille incluse dans la fourchette concernée"}
+{"patientId":5,"historyDate":"2022-02-10","practitionerNote":"Le patient déclare qu'il souffre encore de douleurs cervicales occasionnelles\r\nTests de laboratoire indiquant une microalbumine élevée\r\n\r\nFumeur, il a arrêté dans les 12 mois précédents"}
+{"patientId":5,"historyDate":"2022-02-23","practitionerNote":"Le patient déclare avoir eu plusieurs épisodes de vertige depuis la dernière visite.\r\nTests de laboratoire indiquant que les anticorps sont élevés"}
+{"patientId":6,"historyDate":"2022-01-15","practitionerNote":"Le patient déclare qu'il se sent bien\r\nPoids corporel supérieur au poids recommandé"}
+{"patientId":6,"historyDate":"2022-01-20","practitionerNote":"Le patient déclare qu'il se sent bien"}
+{"patientId":7,"historyDate":"2022-02-23","practitionerNote":"Le patient déclare qu'il se réveille souvent avec une raideur articulaire\r\nIl se plaint également de difficultés pour s’endormir\r\nPoids corporel supérieur au poids recommandé\r\nTests de laboratoire indiquant un taux de cholestérol LDL élevé"}
+{"patientId":8,"historyDate":"2022-02-10","practitionerNote":"Les tests de laboratoire indiquent que les anticorps sont élevés\r\nHémoglobine A1C supérieure au niveau recommandé"}
+{"patientId":9,"historyDate":"2022-01-15","practitionerNote":"Le patient déclare avoir de la difficulté à se concentrer sur ses devoirs scolaires\r\nHémoglobine A1C supérieure au niveau recommandé"}
+{"patientId":9,"historyDate":"2022-01-20","practitionerNote":"Le patient déclare qu'il s’impatiente facilement en cas d’attente prolongée\r\nIl signale également que les produits du distributeur automatique ne sont pas bons\r\nTests de laboratoire signalant des taux anormaux de cellules sanguines"}
+{"patientId":9,"historyDate":"2022-02-12","practitionerNote":"Le patient signale qu'il est facilement irrité par des broutilles\r\nIl déclare également que l'aspirateur des voisins fait trop de bruit\r\nTests de laboratoire indiquant que les anticorps sont élevés"}
+{"patientId":10,"historyDate":"2022-01-15","practitionerNote":"Le patient déclare qu'il n'a aucun problème"}
+{"patientId":10,"historyDate":"2022-01-20","practitionerNote":"Le patient déclare qu'il n'a aucun problème\r\nTaille incluse dans la fourchette concernée\r\nHémoglobine A1C supérieure au niveau recommandé"}
+{"patientId":10,"historyDate":"2022-02-12","practitionerNote":"Le patient déclare qu'il n'a aucun problème\r\nPoids corporel supérieur au poids recommandé\r\nLe patient a signalé plusieurs épisodes de vertige depuis sa dernière visite"}
+{"patientId":10,"historyDate":"2022-02-23","practitionerNote":"Le patient déclare qu'il n'a aucun problème\r\nTests de laboratoire indiquant une microalbumine élevée"}

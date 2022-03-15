@@ -1,0 +1,94 @@
+version: '3'
+services:
+    mediscreenweb:
+        container_name: mediscreenweb
+        build:
+            context: ../MediscreenWeb
+            dockerfile: Dockerfile
+        image: mediscreenweb:latest
+        ports:
+            - 8083:8083
+        environment:
+            - PATIENT_PROXY_HOST=patient:8081
+            - PATIENTHISTORY_PROXY_HOST=patienthistory:8082
+            - PATIENTASSESSMENT_PROXY_HOST=patientassessment:8080
+        depends_on:
+            - patient
+            - patienthistory
+            - patientassessment
+            
+    patient:
+        container_name: patient
+        build:
+            context: ../MediscreenPatient
+            dockerfile: Dockerfile
+        image: patient:latest
+        ports:
+            - 8081:8081
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mediscreenmysql/mediscreen_patient?serverTimezone=UTC
+            - SPRING_DATASOURCE_USERNAME=root
+            - SPRING_DATASOURCE_PASSWORD=ROOT
+        depends_on:
+            mediscreenmysql:
+              condition: service_healthy
+            
+    patienthistory:
+        container_name: patienthistory
+        build:
+            context: ../MediscreenPatientHistory
+            dockerfile: Dockerfile
+        image: patienthistory:latest
+        ports:
+            - 8082:8082
+        environment:
+            - SPRING_DATA_MONGODB_HOST=mediscreenmongodb
+        depends_on:
+            - mediscreenmongodb
+      
+    patientassessment:
+        container_name: patientassessment
+        build:
+            context: ../MediscreenPatientAssessment
+            dockerfile: Dockerfile
+        image: patientassessment:latest
+        ports:
+            - 8080:8080
+        depends_on:
+            mediscreenmysql:
+              condition: service_healthy
+        environment:
+            - PATIENT_PROXY_HOST=patient:8081
+            - PATIENTHISTORY_PROXY_HOST=patienthistory:8082
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mediscreenmysql/mediscreen_patient?serverTimezone=UTC
+            - SPRING_DATASOURCE_USERNAME=root
+            - SPRING_DATASOURCE_PASSWORD=ROOT
+                        
+    mediscreenmongodb:
+        image: mongo:5.0
+        container_name: mediscreenmongodb
+        hostname: mediscreenmongodb
+        ports:
+           - 27017:27017
+        volumes:
+           - D:/DataBases/MediscreenMongoDB/data:/data/db
+           - ./src/main/resources/MongoDBData/patient_histories.json:/mediscreen_data/patient_histories.json
+           - ./src/main/resources/MongoDBData/mongo_import.sh:/docker-entrypoint-initdb.d/mongo_import.sh
+           
+    mediscreenmysql:
+        image: mysql:8.0
+        container_name: mediscreenmysql
+        hostname: mediscreenmysql
+        environment:
+          MYSQL_DATABASE: mediscreen_patient
+          MYSQL_ROOT_PASSWORD: ROOT
+          LANG: fr_FR.utf8
+        volumes:
+          - D:/DataBases/MediscreenMySQL:/var/lib/mysql
+          - ./src/main/resources/MySQLData/1-trigger_words.sql:/docker-entrypoint-initdb.d/1-trigger_words.sql
+          - ./src/main/resources/MySQLData/2-patients.sql:/docker-entrypoint-initdb.d/2-patients.sql
+        command: --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_as_ci
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 1s
+            retries: 5
