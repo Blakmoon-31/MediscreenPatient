@@ -24,5 +24,10 @@
 2. The Swagger documentation for the API is available at the adress http://localhost:8081/swagger-ui.html.
 
 ## Docker service
-1. After importing all services (patient, history, assessment and Web UI), run the command "docker-compose up --build" from the folder of this project.
-2. The Web UI address is http://localhost:8083.
+1. After importing all services (patient, history, assessment and Web UI).
+2. On local, create a folder for the MongoDB database.
+3. In the docker-compose.yml file for the "mediscreenmongodb" service (line 74), replace the string "D:/DataBases/MediscreenMongoDB/data" with the new folder.
+4. On local, create a folder for the MySQL database.
+5. In the docker-compose.yml file for the "mediscreenmysql" service (line 87) replace the string "D:/DataBases/MediscreenMySQL" with the new folder.
+6. Run the command "docker-compose up --build" from the folder of this project.
+7. The Web UI address is http://localhost:8083.
